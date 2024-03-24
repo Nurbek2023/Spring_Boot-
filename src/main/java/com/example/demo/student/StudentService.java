@@ -1,5 +1,7 @@
 package com.example.demo.student;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -8,17 +10,12 @@ import java.time.Month;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class StudentService {
-    public static List<Student> getStudents(){
-        return List.of(
-                new Student(
-                        1L,
-                        "Nurbek",
-                        "nurbek.mamasaliev2905@gmail.com",
-                        LocalDate.of(2004, Month.MAY,29),
-                        20
-                )
 
-        );
+    private final StudentRepository studentRepository;
+
+    public List<Student> getStudents(){
+        return studentRepository.findAll();
     }
 }
